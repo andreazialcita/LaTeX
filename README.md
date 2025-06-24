@@ -12,6 +12,6 @@ This repository contains LaTeX documents demonstrating my technical writing and 
   - 💻 [View the LaTeX Source](https://github.com/andreazialcita/LaTeX/blob/main/main.tex)
 - Cheat Sheet
   - For this, I worked 
-  - 📄 [View the PDF](./report.pdf)
+  - 📄 [View the PDF](https://github.com/andreazialcita/LaTeX/blob/main/%5B62.2%5D%20Cheat%20Sheet.pdf)
   - 💻 [View the LaTeX Source](https://github.com/andreazialcita/LaTeX/blob/main/62.2%20Cheat%20Sheet.tex)
 
