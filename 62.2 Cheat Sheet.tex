@@ -1,0 +1,778 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[left=0.5in,right=0.5in,bottom=1in, includehead, top = .8in, headheight = 24pt]{geometry}
+\usepackage{graphicx} % Required for inserting images
+
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{marginnote}
+\usepackage[geometry]{ifsym}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[long, nodayofweek]{datetime}
+\usepackage{longtable}
+\usepackage{arydshln}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\title{MATH 62.2}
+\author{Linear Models}
+\date{Definitions and Theorems}
+
+% Slides Assignment
+% 4-15: CA
+% 16-29: Martin
+% 30-41: Bella
+% 42-50: Atasha
+% 49-61: Andi
+% 62-71: Hana
+% 72-80: Lizzie
+
+\begin{document}
+\begin{longtable}{|p{17 cm}|}
+
+\hline
+\noindent \textcolor{red}{\textbf{Distribution of Quadratic Forms}} \\
+% CA
+\hline
+\textcolor{red}{\textbf{Quadratic Forms}} \\
+If $\mathbf{A}$ is a symmetric matrix and $\mathbf{y}$ is a vector, the product $\mathbf{y^TAy}=\sum_i{a_{ii}y_i^2}+\sum_{i\neq j}a_{ij}y_iy_j$ is called a \textbf{quadratic form}. \\
+\hline
+\textcolor{red}{\textbf{Theorem 4.4a}}\\
+Let $\mathbf{x}\sim \mathcal{N}_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ and $\mathbf{a}=[a_1,...,a_p]^T$. Then, $\mathbf{a^Tx}=\sum^{p}_{i=1}{a_ix_i}\sim \mathcal{N}_1(\mathbf{a^T\boldsymbol{\mu},a^T\boldsymbol{\Sigma}a}).$ \\
+\textcolor{blue}{Remark: In this form, we can show that certain sum of squares have $X^2$ distributions.}  \\
+\textcolor{blue}{Remark: It can be shown that $\mathbf{y^TIy=y^T(I-}\frac{1}{n}\mathbf{J)y+y^T(}\frac{1}{n}\mathbf{J)y}.$}\\
+\hline
+\textcolor{red}{\textbf{Sum of Squares Properties}}\\
+\textbf{(1)} $\mathbf{I=(I-}\frac{1}{n}\mathbf{J)+(}\frac{1}{n}\mathbf{J)}$, \textbf{(2)} $\mathbf{I, I-}\frac{1}{n}\mathbf{J,}\frac{1}{n}\mathbf{J}$ are idempotent; and \textbf{(3)} $\mathbf{(I-}\frac{1}{n}\mathbf{J)(}\frac{1}{n}\mathbf{J)=O}.$ \\
+\hline
+\textcolor{red}{\textbf{Theorem 5.2a (Mean and Variances)}} \\
+If $\mathbf{y}$ is a random vector with mean $\boldsymbol{\mu}$ and covariance matrix $\boldsymbol{\Sigma}$, and $\mathbf{A}$ is a symmetric matrix of constants, then $\mathbb{E}\mathbf{(y^TAy)=\text{tr}(A\boldsymbol{\Sigma})+\boldsymbol{\mu}^TA\boldsymbol{\mu}}.$\\
+\hline
+\textcolor{red}{\textbf{Theorem 5.2b-d (Mean and Variances)}}\\
+If $\textbf{y}\sim \mathcal{N}_p(\boldsymbol{\mu},\boldsymbol{\Sigma})$, then \\
+\indent $M_{\mathbf{y^TAy}}(t)=|\mathbf{I}-2t\mathbf{A\boldsymbol{\Sigma}}|^{-\frac{1}{2}}\text{exp} \left\{ -\frac{1}{2}\boldsymbol{\mu}\mathbf{^T[I-(I-}2t\mathbf{A\boldsymbol{\Sigma})^{-1}]}\boldsymbol{\Sigma^{-1}\mu}\right\}$\\
+\indent Var$\mathbf{(y^TAy)}=2\text{tr} [(\boldsymbol{A\Sigma})^2]+4\boldsymbol{\mu^TA\Sigma A\mu}$\\
+\indent Cov$(\mathbf{y,y^TAy})=2\boldsymbol{\Sigma A\mu}$ \\
+\hline
+\textcolor{red}{\textbf{Corollary}}\\
+Let $\mathbf{B}$ be a $k\times p$ matrix of constants. Then Cov($\mathbf{By,y^TAy})=2\boldsymbol{B\Sigma A\mu}.$ \\
+\hline
+\textcolor{red}{\textbf{Theorem 5.2e (Mean and Variances)}}\\
+Let $ \mathbf{v}=\begin{bmatrix} \mathbf{y}\\ \mathbf{x}\end{bmatrix} $ be a partitioned random vector with mean vector and covariance vector matrix given by $\begin{bmatrix} \boldsymbol{\mu_y}\\ \boldsymbol{\mu_x}\end{bmatrix} $ and $\begin{bmatrix} \boldsymbol{\Sigma_{yy}} & \boldsymbol{\Sigma_{yx}} \\ \boldsymbol{\Sigma_{xy}} & \boldsymbol{\Sigma_{xx}}\end{bmatrix} $, respectively, where $\mathbf{y}$ is a $p\times 1$, $\mathbf{x}$ is $q\times 1$, $\boldsymbol{\Sigma_{yx}}$ is $p\times q.$ Let $\mathbf{A}$ be a $q\times p$ matrix of constants. Then $\mathbb{E}(\mathbf{x^TAy})=\text{tr}\boldsymbol{(A\Sigma _{yx})+\mu^T_xA\mu_y}$. \\
+\hline
+\textcolor{red}{\textbf{Central Chi-Square Distribution}} \\
+Let $z_1,...,z_n$ be iid $\mathcal{N}(0,1)$ random variables. Since the $z_i$'s are independent, the random vector $\mathbf{z}=[z_1,...,z_n]^T$ is distributed as $\mathcal{N}_n(0,\mathbf{I}_n)$. Furthermore, $\sum_{i=1}^n z_i^2=\mathbf{z^T z}$ is $\chi ^2(n).$\\
+\hline
+\textcolor{red}{\textbf{Theorem 5.3a}}\\
+If $u\sim\chi ^2(n)$, then \textbf{(1)} $\mathbb{E}(u)=n$, \textbf{(2)} Var$(u)=2n$, and \textbf{(3)} $M_u(t)=\frac{1}{(1-2t)^{n/2}}$.\\
+\hline
+\textcolor{red}{\textbf{Non-Central Chi-Square Distribution}}\\
+Let $y_1,...,y_n$ be random variables independently distributed as $\mathcal{N}(\mu_i,1)$, so that $\mathbf{y}\sim\mathcal{N}_n(\boldsymbol{\mu},\boldsymbol{I}_n)$, where $\boldsymbol{\mu}=[\mu_1,...,\mu_n]^T$. The density of $v=\sum_{i=1}^n y^2_i=\mathbf{y^Ty}$ is called the \textbf{non-central chi-square distribution} and is denoted by $\chi^2(n,\lambda)$, where $\lambda$ is the noncentrality parameter given by $\lambda=\frac{1}{2}\sum_{i=1}^n \mu_i^2=\frac{1}{2}\boldsymbol{\mu^T\mu}$. \textcolor{blue}{\textbf{Remark: $\lambda$ is not an eigenvalue.}}\\
+\hline
+\textcolor{red}{\textbf{Theorem 5.3b}}\\
+If $v\sim \chi^2(n,\lambda)$, then \textbf{(1)} $\mathbb{E}(v)=n+2\lambda$, \textbf{(2)} Var$(v)=2n+8\lambda$, and \textbf{(3)} $M_v(t)=\frac{1}{(1-2t)^{n/2}}\text{exp}\left\{ -\lambda \left( 1-\frac{1}{1-2t}\right)\right\}$\\
+\textcolor{blue}{Remark: The mean of $v=\sum_{i=1}^ny_i^2$ is greater than the mean of $u=\sum_{i=1}^n(y_i-\mu_i)^2$.}\\
+\hline
+\textcolor{red}{\textbf{Theorem 5.3c}}\\
+If \( v_1, \dots, v_k \) are independently distributed as \( \chi^2(n_i, \lambda_i) \), then \( \sum\limits_{i=1}^{k} v_i \) is distributed as $
+    \chi^2 \left( \sum\limits_{i=1}^{k} n_i, \sum\limits_{i=1}^{k} \lambda_i \right).$\\
+\hline
+\newpage \hline
+% Martin [16-29]
+\textcolor{red}{\textbf{Non-Central Chi-Square Distribution}}\\
+\hline
+\textcolor{red}{\textbf{Corollary}} \\
+If $\lambda = 0$, then $\mathbb{E}(v)$, Var($v$), and $M_v(t)$ reduce to $\mathbb{E}(u)$, Var($u$), and $M_u(t)$ for the central chi-square distribution. Thus, $\chi^2(n, 0) = \chi^2(n)$ \\
+\hline
+\textcolor{red}{\textbf{Corollary}} \\
+If $u_1, \dots, u_k$ are independently distributed as $\chi^2(n_i)$, then $\sum_{i=1}^{k}{u_i}$ is distributed as $\chi^2(\sum_{i=1}^{k}{n_i})$\\
+\hline
+\textcolor{red}{\textbf{Central F-distribution}}\\
+If $u \sim \chi^2(p)$ and $v \sim \chi^2(q)$, where $u$ and $v$ are independent, then $w=\frac{u/p}{v/q}$ has a (central) F distribution with $p$ and $q$ degrees of freedom.\\
+\hline
+\textcolor{red}{\textbf{Central t-distribution}}\\
+If $z \sim \mathcal{N}(0,1)$ and $u \sim \chi^2(q)$, where $z$ and $u$ are independent, then $t=\frac{z}{\sqrt{u/p}}$ has a (central) t distribution with $p$ degrees of freedom.\\
+\hline
+\textcolor{red}{\textbf{Theorem}}\\
+If $u \sim \chi^2(p)$ and $v \sim \chi^2(q)$, and $u$ and $v$ are independent, then $w=\frac{u/p}{v/q} \sim F(p, q)$. The mean and variance of $w$ are given by: $\mathbb{E}(w) = \frac{q}{q-2}$, Var($w$) = $\frac{2q^2(p+q-2)}{p(q-1)^2(q-4)}$\\
+\hline
+\textcolor{red}{\textbf{Non-Central F-distribution}}\\
+If $u \sim \chi^2(p, \lambda)$ and $v \sim \chi^2(q)$, where $u$ and $v$ are independent, $z=\frac{u/p}{v/q}$ has the non-central F distribution with noncentrality parameter $\lambda$, denoted by $F(p,q,\lambda)$, where $\lambda$ is the same noncentrality parameter as in the non-central chi-square distribution.\\
+\textcolor{blue}{Remark: The mean of z, $\mathbb{E}(z) = \frac{q}{q-2}(1+\frac{2\lambda}{p})$, is greater than the mean for the central F distribution.}\\
+\hline
+\textcolor{red}{\textbf{Non-Central t-distribution}}\\
+If $y \sim \mathcal{N}(\mu,1), u \sim \chi^2(p)$, where $y$ and $u$ are independent, then $t=\frac{y}{\sqrt{u/p}}$ is said to have a non-central t distribution with $p$ degrees of freedom and noncentrality parameter $\mu$, denoted by $t(p,\mu)$. Furthermore, if $y \sim \mathcal{N}(\mu,\sigma^2)$, then $t=\frac{y/\sigma}{\sqrt{u/p}}\sim t(p, \frac{\mu}{\sigma})$ and $\frac{y}{\sigma}\sim\mathcal{N}(\frac{\mu}{\sigma},1)$\\
+\hline
+\textcolor{red}{\textbf{Distribution of Quadratic Forms - Theorem 5.5}}\\
+Let $y\sim \mathcal{N}_p(\boldsymbol{\mu},\boldsymbol{\Sigma}), \mathbf{A}$ be a symmetric matrix of constants of rank $r$, and $\lambda=\frac{1}{2}\boldsymbol{\mu}^T\mathbf{A}\boldsymbol{\mu}$. Then, $\mathbf{y^T Ay} \sim \chi^2(r, \lambda)$ iff $A\boldsymbol{\Sigma}$ is idempotent.\\
+\hline
+\textcolor{red}{\textbf{Independence of Linear and Quadratic Forms - Theorem 5.6}}\\
+Suppose that $\mathbf{B}$ is a $k \times p$ matrix of constants, $\mathbf{A}$ is a $p \times p$ symmetric matrix of constants, and $y\sim \mathcal{N}_p(\boldsymbol{\mu},\boldsymbol{\Sigma})$. Then $\mathbf{By}$ and $\mathbf{y^T Ay}$ are independent iff $\mathbf{B\boldsymbol{\Sigma}A} = \mathbf{O}$.\\
+Let $\mathbf{A}$ and $\mathbf{B}$ be symmetric matrix of constants. If $y \sim \mathcal{N}_p(\boldsymbol{\mu},\boldsymbol{\Sigma})$, then $\mathbf{y^T Ay}$ and $\mathbf{y^T By}$ are independent iff $\mathbf{A\boldsymbol{\Sigma}B}=\mathbf{O}$.\\
+\hline
+\textcolor{red}{\noindent\textbf{Multiple Linear Regression Model}}\\
+$y=\beta_0+\beta_1x_1+\dots+\beta_px_p+\varepsilon$\\
+\textcolor{blue}{Remark: To estimate $\beta _i$'s, we will use a sample of n observations on y and the associated $x$ variables. The model for the $i^{th}$ observation is: $y_i=\beta_0+\beta_1x_i1+\dots+\beta_px_ip+\varepsilon_i$, $i=1,...,n$}\\
+\hline
+\textcolor{red}{\textbf{Assumptions}}\\
+$\mathbb{E}(\varepsilon_i) = 0 $ for $i = 1, \dots, n ,$ or equivalently, $\mathbb{E}(y_i) = \beta_0 + \beta_1 x_{i1} + \dots + \beta_p x_{ip}$\\
+$\operatorname{Var}(\varepsilon_i) = \sigma^2 $ for $ i = 1, \dots, n $, or equivalently, $\operatorname{Var}(y_i) = \sigma^2$\\
+$ \operatorname{Cov}(\varepsilon_i, \varepsilon_j) = 0 $ for all $i \neq j $, or equivalently, $\operatorname{Cov}(y_i, y_j) = 0$\\
+\hline
+\newpage
+\hline
+\textcolor{red}{\textbf{Linear Regression Model}}\\
+$
+\left\{
+\begin{array}{l}
+    y_1 = \beta_0 + \beta_1 x_{11} + \cdots + \beta_p x_{1p} + \varepsilon_1 \\
+    y_2 = \beta_0 + \beta_1 x_{21} + \cdots + \beta_p x_{2p} + \varepsilon_2 \\
+    \vdots \\
+    y_n = \beta_0 + \beta_1 x_{n1} + \cdots + \beta_p x_{np} + \varepsilon_n
+\end{array}
+\right.
+\,
+\Rightarrow
+\,
+\begin{bmatrix}
+    y_1 \\
+    y_2 \\
+    \vdots \\
+    y_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1 & x_{11} & x_{12} & \cdots & x_{1p} \\
+    1 & x_{21} & x_{22} & \cdots & x_{2p} \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    1 & x_{n1} & x_{n2} & \cdots & x_{np}
+\end{bmatrix}
+\begin{bmatrix}
+    \beta_0 \\
+    \beta_1 \\
+    \vdots \\
+    \beta_p
+\end{bmatrix}
++
+\begin{bmatrix}
+    \varepsilon_1 \\
+    \varepsilon_2 \\
+    \vdots \\
+    \varepsilon_n
+\end{bmatrix}
+$ \\ 
+\hline
+\textcolor{red}{\textbf{Multiple Linear Regression Model}}\\
+$\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}$ where    \\
+$\mathbf{y} =
+\begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ y_n
+\end{bmatrix}, \;
+\mathbf{X} =
+\begin{bmatrix}
+1 & x_{11} & x_{12} & \cdots & x_{1p} \\
+1 & x_{21} & x_{22} & \cdots & x_{2p} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & x_{n1} & x_{n2} & \cdots & x_{np}
+\end{bmatrix}, \;
+\boldsymbol{\beta} =
+\begin{bmatrix}
+\beta_0 \\ \beta_1 \\ \vdots \\ \beta_p
+\end{bmatrix}, \;
+\boldsymbol{\varepsilon} =
+\begin{bmatrix}
+\varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n
+\end{bmatrix} \quad ; \mathbb{E}(\mathbf{\varepsilon}) = \mathbf{0}, \; \text{Var}(\mathbf{\varepsilon}) = \sigma^2 \mathbf{I}.$
+
+\textcolor{blue}{\textbf{Remark:} Equivalently, $\mathbb{E}(\mathbf{y}) = \mathbf{X} \mathbf{\beta}, \quad \text{Var}(\mathbf{y}) = \sigma^2 \mathbf{I}.$} \\
+\hline
+\textcolor{blue}{\textbf{Remark:}} \\
+\begin{minipage}{\linewidth} 
+\vspace{-0.15cm}
+\textcolor{blue}{\begin{enumerate}[noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt]
+    \item We generally assume $n > p+1$ and $\text{rank}(\mathbf{X}) = p+1$.
+    \item If $n < p+1$ or if there’s a linear relationship among the $x$’s, then $\mathbf{X}$ will not have full column rank.
+    \item If the values of $x_{ij}$’s are planned/chosen, then $\mathbf{X}$ contains the experimental design and is sometimes called the \textbf{design matrix}.
+    \item The $\mathbf{\beta}$ parameters are called the \textbf{(partial) regression coefficients}. 
+\end{enumerate}}
+\end{minipage} \\
+\hline  
+\textcolor{red}{\textbf{Estimating : Least Squares Approach}} \\
+\textbf{\textcolor{violet}{Goal}:} Find estimators that minimize the sum of the squared deviations of the $n$ observed $y$'s from their predicted values $\hat{y}$. \\
+We seek the estimators $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$ that minimizes
+$S(\mathbf{\beta}) = \sum_{i=1}^{n} \varepsilon_i^2 = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = (\mathbf{y} - \mathbf{X} \mathbf{\beta})^\top (\mathbf{y} - \mathbf{X} \mathbf{\beta}) = \|\mathbf{y} - \mathbf{X} \mathbf{\beta}\|^2$ \\
+\textbf{\textcolor{blue}{Remark}:} The predicted value $\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \cdots + \hat{\beta}_p x_p$ estimates $\mathbb{E}(y_i)$, not $y_i$. \\
+\hline 
+\textcolor{red}{\textbf{OLS Estimator: Theorem 7.3a}} \\
+If \(\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}\), where \(\mathbf{X}\) is \(n \times (p+1)\) of rank \((p+1) < n\), then the value of \(\hat{\boldsymbol{\beta}} = \begin{bmatrix} \hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p \end{bmatrix}^{\top}\) that minimizes the sum of the squared deviations \(S(\boldsymbol{\beta})\) is \(\hat{\boldsymbol{\beta}} = \left( \mathbf{X}^{\top} \mathbf{X} \right)^{-1} \mathbf{X}^{\top} \mathbf{y}\). \\
+\hline
+\textcolor{blue}{\textbf{Remark:}} \\
+\begin{minipage}{\linewidth} 
+\vspace{-0.15cm}
+\textcolor{blue}{\begin{enumerate}[noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt]
+    \item Note that $\mathbf{X^T X}$ contains products of columns of $\mathbf{X}$, while $\mathbf{X^T y}$ contains products of the columns of $\mathbf{X}$ and $\mathbf{y}$
+    $$
+    \mathbf{X}^\top \mathbf{X} =
+    \begin{bmatrix}
+        n & \sum\limits_{i} x_{i1} & \sum\limits_{i} x_{i2} & \cdots & \sum\limits_{i} x_{ip} \\
+        \sum\limits_{i} x_{i1} & \sum\limits_{i} x_{i1}^2 & \sum\limits_{i} x_{i1} x_{i2} & \cdots & \sum\limits_{i} x_{i1} x_{ip} \\
+        \sum\limits_{i} x_{i2} & \sum\limits_{i} x_{i1} x_{i2} & \sum\limits_{i} x_{i2}^2 & \cdots & \sum\limits_{i} x_{i2} x_{ip} \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        \sum\limits_{i} x_{ip} & \sum\limits_{i} x_{i1} x_{ip} & \sum\limits_{i} x_{i2} x_{ip} & \cdots & \sum\limits_{i} x_{ip}^2
+    \end{bmatrix}
+    \quad
+    \mathbf{X}^\top \mathbf{y} =
+    \begin{bmatrix}
+        \sum\limits_{i} y_{i} \\
+        \sum\limits_{i} x_{i1} y_{i} \\
+        \vdots \\
+        \sum\limits_{i} x_{ip} y_{i}
+    \end{bmatrix}
+    $$
+    \item If $\hat{\boldsymbol{\beta}} = \left( \mathbf{X}^\top \mathbf{X} \right)^{-1} \mathbf{X}^\top \mathbf{y}$, then $\hat{\boldsymbol{\varepsilon}} = \mathbf{y} - \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{y} - \hat{\mathbf{y}}$ is known as the \textbf{residual vector}.
+    \item The residual vector estimates $\bm{\varepsilon}$ in the model and can be used to check the assumptions of the model.
+    \item We can also write $\hat{\boldsymbol{\varepsilon}}$ as $\hat{\bm{\varepsilon}} = \mathbf{y} - \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{y} - \mathbf{X} \left( \mathbf{X}^\top \mathbf{X} \right)^{-1} \mathbf{X}^\top \mathbf{y} = \left[ \mathbf{I} - \mathbf{X} \left( \mathbf{X}^\top \mathbf{X} \right)^{-1} \mathbf{X}^\top \right] \mathbf{y} = \mathbf{H} \mathbf{y}$, where $\mathbf{H} = \mathbf{I} - \mathbf{X} \left( \mathbf{X}^\top \mathbf{X} \right)^{-1} \mathbf{X}^\top$ is both symmetric and idempotent.        
+\end{enumerate}}
+\end{minipage} \\
+\hline
+\newpage
+\hline
+\textcolor{red}{\textbf{Properties of $\mathbf{\hat{\beta}}$: Theorem 7.3b-c}}\\
+\begin{minipage}{\linewidth} 
+\vspace{-0.15cm}
+\begin{enumerate}[noitemsep, topsep=0pt]
+    \item If $\mathbb{E}(\mathbf{y}) = \mathbf{X} \mathbf{\beta}$, then $\boldsymbol{\hat{\beta}}$ is an unbiased estimator for $\mathbf{\beta}$.
+    \item If $\text{Var}(\mathbf{y}) = \sigma^2 \mathbf{I}$, the covariance matrix for $\boldsymbol{\hat{\beta}}$ is given by:
+    $\sigma^2 \left( \mathbf{X}^{\top} \mathbf{X} \right)^{-1}.$
+\end{enumerate}
+\end{minipage} \\
+\hline  
+\textcolor{red}{\textbf{Theorem (7.3d Gauss-Markov Theorem)}} \\
+Let $\mathbf{c}^{\top} \boldsymbol{\beta}$ be a linear function of $\boldsymbol{\beta}$, where $\mathbf{c}$ is a $(p+1) \times 1$ vector of constants. If
+$\mathbb{E}(\mathbf{y}) = \mathbf{X} \boldsymbol{\beta} \quad \text{and} \quad \text{Var}(\mathbf{y}) = \sigma^2 \mathbf{I},$
+then the best linear unbiased estimator (BLUE) of $\mathbf{c}^{\top} \boldsymbol{\beta}$ (that is, with minimum variance) is $\mathbf{c}^{\top} \boldsymbol{\hat{\beta}}$.\\
+\hline
+\textcolor{red}{\textbf{Normal Model}} \\
+\textcolor{blue}{\textbf{Recall:} The OLS estimator $\boldsymbol{\hat{\beta}} = \left( \mathbf{X}^{\top} \mathbf{X} \right)^{-1} \mathbf{X}^{\top} \mathbf{y}$ has no assumptions on the distribution of $\mathbf{y}$} \\
+\textbf{Assumption}: $\boldsymbol{\varepsilon} \sim \mathcal{N}_n(\mathbf{0}, \sigma^2 \mathbf{I})$, or equivalently, $\mathbf{y} \sim \mathcal{N}_n (\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I})$. \\
+\hline
+\textcolor{red}{\textbf{Maximum Likelihood Estimator: Theorem 7.6a}} \\
+If $\mathbf{y} \sim \mathcal{N}_n(\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I})$ (or equivalently, $\boldsymbol{\varepsilon} \sim \mathcal{N}_n(0, \sigma^2 \mathbf{I})$), where $\mathbf{X}$ is $n \times (p+1)$ of rank $(p+1) < n$, the maximum likelihood estimator of $\boldsymbol{\beta}$ and $\sigma^2$ are $\boldsymbol{\hat{\beta}} = \left( \mathbf{X}^{\top} \mathbf{X} \right)^{-1} \mathbf{X}^{\top} \mathbf{y}$ and $\hat{\sigma}^2 = \frac{1}{n} (\mathbf{y} - \mathbf{X} \boldsymbol{\hat{\beta}})^{\top} (\mathbf{y} - \mathbf{X} \boldsymbol{\hat{\beta}})$. \\
+\hline
+\textcolor{red}{\textbf{Properties of $\mathbf{\hat{\beta}}$ and $\mathbf{\hat{\sigma}^2}$: Theorem 7.6b}} \\
+\text{Suppose that} $\mathbf{y} \sim \mathcal{N}_n(\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I})$, 
+\text{where} $\mathbf{X}$ \text{is} $n \times (p+1)$ \text{of rank} $(p+1) < n$ \text{and} 
+$\boldsymbol{\beta} = [\beta_0, \beta_1, \dots, \beta_p]^{\top}$. 
+\text{Then the maximum likelihood estimators} $\boldsymbol{\hat{\beta}}$ \text{and} $\mathbf{\hat{\sigma}^2}$ \text{for} 
+$\boldsymbol{\beta}$ \text{and} $\sigma^2$ \text{in the normal model have the following distributional properties:} \\
+\begin{minipage}{\linewidth} 
+\vspace{-0.03cm}
+\begin{enumerate}[noitemsep, topsep=0pt]
+    \item
+    $
+    \boldsymbol{\hat{\beta}} \sim \mathcal{N}_{p+1} \left( \mathbf{\beta}, \sigma^2 (\mathbf{X}^{\top} \mathbf{X})^{-1} \right).
+    $
+    \item 
+    $
+    \frac{n \hat{\sigma}^2}{\sigma^2} \sim \chi^2(n - p - 1), \quad \text{or equivalently,} \quad \frac{(n - p - 1)s^2}{\sigma^2} \sim \chi^2(n - p - 1).
+    $
+    \item $\boldsymbol{\hat{\beta}}$ and $\hat{\sigma}^2$ (or $s^2$) are independent.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textcolor{red}{\textbf{Theorem (7.6c-d)}}\\
+If $\mathbf{y} \sim \mathcal{N}_n(\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I})$, then:\\
+\begin{minipage}{\linewidth} 
+\vspace{-0.05cm}
+\begin{enumerate}[noitemsep, topsep=0pt]
+    \item $\boldsymbol{\hat{\beta}}$ and $\hat{\sigma}^2$ are jointly sufficient for $\boldsymbol{\beta}$ and $\sigma^2$.
+    \item $\boldsymbol{\hat{\beta}}$ and $s^2$ have minimum variance among all unbiased estimators.
+\end{enumerate} 
+\end{minipage} \\
+\hline  
+\textcolor{red}{\textbf{Corollary}}   \\
+\text{If} $\mathbf{y} \sim \mathcal{N}_n(\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I})$, \text{then the minimum variance unbiased estimator of} $\mathbf{c}^{\top} \boldsymbol{\beta}$ \text{is} $\mathbf{c}^{\top} \mathbf{\hat{\beta}}$,  
+\text{where} $\boldsymbol{\hat{\beta}}$ \text{is the maximum likelihood estimator for} $\boldsymbol{\beta}$. \\
+\hline
+\textcolor{red}{\textbf{Estimating Mean Response}} \\
+\textbf{Let} $\boldsymbol{\theta} = \mathbb{E}(\mathbf{y})$.  
+Since $\mathbb{E}(\mathbf{y}) = \mathbf{X} \boldsymbol{\beta}$, the best linear unbiased estimator (BLUE) for $\boldsymbol{\theta}$ is:
+$
+\hat{\boldsymbol{\theta}} = \mathbf{X} \hat{\boldsymbol{\beta}}
+= \mathbf{X} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top} \mathbf{y}.
+$ Under the assumption that $\mathbf{y} \sim \mathcal{N}_n (\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I})$, we have:
+$
+\mathbf{X} \hat{\boldsymbol{\beta}} \sim \mathcal{N}_n \left( \mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{X} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top} \right).
+$\\
+\textcolor{blue}{\textbf{Recall: Estimators}}  
+
+\textcolor{blue}{Under the assumption that $\mathbf{y} \sim \mathcal{N}_n (\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I})$, the MLE are:
+$
+\hat{\boldsymbol{\beta}} = (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top} \mathbf{y}
+\quad \hat{\sigma}^2 = \frac{1}{n} (\mathbf{y} - \mathbf{X} \hat{\boldsymbol{\beta}})^{\top} (\mathbf{y} - \mathbf{X} \hat{\boldsymbol{\beta}})
+$.\\
+Given values of the predictors $\mathbf{x}_i = (x_{i1}, \dots, x_{ip})$, we can estimate the value $\hat{y}_i$ of the response.} \\
+\hline
+\textcolor{red}{\textbf{F-Test for the General Linear Hypothesis}}
+
+\textcolor{blue}{Recall: By the Gauss-Markov Theorem, the BLUE for $c^{\top} \boldsymbol{\beta}$ is $c^{\top} \hat{\boldsymbol{\beta}}$.  }
+
+\textcolor{violet}{\textbf{Goal:}} Test $H_0 : \mathbf{C} \boldsymbol{\beta} = \mathbf{d}$ \textbf{vs.} $H_1 : \mathbf{C} \boldsymbol{\beta} \neq \mathbf{d}$, where  
+$\mathbf{C}$ is $k \times (p+1)$ of rank $k$, and $\mathbf{d} \in \mathbb{R}^k$. \\  
+\hline
+\textcolor{red}{\textbf{Theorem (8.4a)}}  
+If $\mathbf{y} \sim \mathcal{N}_n (\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I})$, then  
+\begin{itemize}[noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt]
+    \item $\mathbf{C} \hat{\boldsymbol{\beta}} \sim \mathcal{N}_k \left( \mathbf{C} \boldsymbol{\beta}, \sigma^2 \mathbf{C} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{C}^{\top} \right).$
+    \item $\frac{(n - p - 1)s^2}{\sigma^2} = \frac{\mathbf{y}^{\top} \mathbf{H} \mathbf{y}}{\sigma^2} \sim \chi^2(n - p - 1, 0).$
+\end{itemize}
+
+\textcolor{blue}{\textbf{Remarks:}} Recall that $\mathbf{H} = \mathbf{I} - \mathbf{X} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top}$.  \\
+\hline
+\newpage
+\hline
+\textcolor{red}{\textbf{Theorem (8.4f)}} \\
+If $\mathbf{y} \sim \mathcal{N}_n (\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I})$,
+\begin{itemize}[noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt]
+    \item $\left( \mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d} \right)^{\top} 
+    \left[ \mathbf{C} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{C}^{\top} \right]^{-1} 
+    \left( \mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d} \right) \Big/ \sigma^2 
+    \sim \chi^2(k, \lambda),$ where
+    \[
+    \lambda = \frac{\left( \mathbf{C} \boldsymbol{\beta} - \mathbf{d} \right)^{\top} 
+    \left[ \mathbf{C}^{\top} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{C} \right]^{-1} 
+    \left( \mathbf{C} \boldsymbol{\beta} - \mathbf{d} \right)}{2\sigma^2} = 0 
+    \text{ when } H_0 \text{ is true.}
+    \]
+    \item $\left( \mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d} \right)^{\top} 
+    \left[ \mathbf{C} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{C}^{\top} \right]^{-1} 
+    \left( \mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d} \right)$ and 
+    $\mathbf{y}^{\top} H \mathbf{y}$ are independent.
+\end{itemize}
+
+\textcolor{blue}{\textbf{Remarks:}} 
+{$(n - p - 1)s^2 = \mathbf{y}^{\top} H \mathbf{y},$ where $H = I - \mathbf{X} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top}$.} \\
+\hline
+\textcolor{red}{\textbf{Theorem (8.4g)}} \\ 
+Let $\mathbf{y} \sim \mathcal{N}_n (\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I})$. If $H_0 : \mathbf{C} \boldsymbol{\beta} = \mathbf{d}$ is true, then  
+\[
+F = \frac{(\mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d})^{\top} 
+    \left[ \mathbf{C} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{C}^{\top} \right]^{-1} 
+    (\mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d}) / \sigma^2}{k}
+    \Bigg/ 
+    \frac{\mathbf{y}^{\top} H \mathbf{y} / \sigma^2}{n - p - 1}
+\]
+\[
+F = \frac{(\mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d})^{\top} 
+    \left[ \mathbf{C} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{C}^{\top} \right]^{-1} 
+    (\mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d})}
+    {k \cdot \mathbf{y}^{\top} H \mathbf{y} / (n - p - 1)}
+    \sim F(k, n - p - 1, 0).
+\] \\
+\hline
+\textcolor{red}{\textbf{Generalized Linear Hypotheses}} \\
+Test for the joint effect of the explanatory variables:  \(
+H_0 :
+\begin{bmatrix}
+\beta_1 \\
+\vdots \\
+\beta_p
+\end{bmatrix} =
+\mathbf{0}
+\quad \text{vs} \quad
+H_1 :
+\begin{bmatrix}
+\beta_1 \\
+\vdots \\
+\beta_p
+\end{bmatrix} \neq \mathbf{0}
+\)
+
+Effect of the $i$th variable: $
+H_0 : \beta_i = 0 \quad \text{vs} \quad H_1 : \beta_i \neq 0, \quad i = 1, \dots, p
+$ \\
+\hline
+\textcolor{red}{\textbf{F-Test}} \\
+\textcolor{violet}{\textbf{Decision Rule:}} 
+\textcolor{black}{Given significance level $\alpha$, reject $H_0$ if $F>F_{1-\alpha}(k,n-p-1)$.} \\
+\hline
+\textcolor{red}{\textbf{Coefficient of Determination $R^2$}} \\ 
+The total sum of squares, $SST$, can be written as: $
+\text{SST} = \sum_{i=1}^n (y_i - \overline{y})^2
+= \mathbf{y}^\top \mathbf{y} - n\overline{y}^2
+= (\hat{\boldsymbol{\beta}}^\top \mathbf{X}^\top \mathbf{y} - n\overline{y}^2) 
++ (\mathbf{y}^\top \mathbf{y} - \hat{\boldsymbol{\beta}}^\top \mathbf{X}^\top \mathbf{y})
+= \text{SSR} + \text{SSE}.
+$
+
+\textbf{\textcolor{blue}{Remark}}: 
+$\boldsymbol{\hat{\varepsilon}}^\top \boldsymbol{\hat{\varepsilon}} 
+= \mathbf{y}^\top \mathbf{y} - \hat{\boldsymbol{\beta}}^\top \mathbf{X}^\top \mathbf{y} 
+= $ SSE.\\
+\hline
+\textcolor{red}{\textbf{Coefficient of Determination $R^2$}} \\ 
+The proportion of the total sum of squares due to regression
+\[
+R^2 = \frac{SSR}{SST} = \frac{\boldsymbol{\hat{\beta}}^T\textbf{X}^T\textbf{y} - n\overline{y}^2}{\textbf{y}^T\textbf{y} - n\overline{y}^2} = \frac{\sum_{i=1}^n (\hat{y}_i - \overline{y})^2}{\sum_{i=1}^n (y_i - \overline{y})^2}
+\]
+is known as the \textbf{coefficient of determination}, or the squared multiple correlation. \\
+\textbf{\textcolor{blue}{Remark}}: \\
+\begin{minipage}{\linewidth} 
+\vspace{-0.1cm}
+\begin{enumerate}
+[noitemsep, topsep=0pt]
+    \item The positive square root R is called the (multiple) correlation coefficient.
+    \item The ratio is a measure of model fit and provides an indication of how well the x's predict y.
+\end{enumerate}
+\end{minipage} \\
+\hline  
+\newpage
+\hline
+\textcolor{red}{\textbf{Properties}} \\
+\begin{minipage}{\linewidth} 
+\vspace{-0.1cm}
+\begin{enumerate}
+[noitemsep, topsep=0pt]
+    \item The range of $R^2$ is $0 \leq R^2 \leq 1$.
+    \item $R = r_{yy}$; that is, the multiple correlation is equal to the simple correlation.
+    \item Adding a variable $x$ to the model \textbf{increases} the value of $R^2$.
+    \item If $\beta_1 = \beta_2 = \cdots = \beta_p = 0$, then
+    \(
+    \mathbb{E}(R^2) = \frac{p}{n-1}.
+    \)
+\end{enumerate}
+Note that the estimated coefficients $\hat{\beta}_j$ will not be zero even when the  $\beta_j$'s are zero.
+\end{minipage} \\
+\hline
+\textbf{\textcolor{blue}{Remarks}}: \\
+\begin{minipage}{\linewidth} 
+\vspace{-0.15cm}
+\begin{enumerate}
+[noitemsep, topsep=0pt]
+    \item $R^2$ can also be written as
+    \[
+    R^2 = \frac{(\mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d})^{\top} 
+    \left[ \mathbf{C} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{C}^{\top} \right]^{-1} 
+    (\mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d})}{(\mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d})^{\top} 
+    \left[ \mathbf{C} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{C}^{\top} \right]^{-1} 
+    (\mathbf{C} \hat{\boldsymbol{\beta}} - \mathbf{d})+\mathbf{y}^{\top}\textbf{H}\mathbf{y}}
+    \]
+    \item If all $\beta_j$'s were zero, $R^2=1$. If $y_i=\hat{y}_i$ for all $i, R^2=1$.
+    \item When $p$ is a relatively large fraction of n, the resulting $R^2$ will be large, but not meaningful. To compensate for this, the adjusted $R^2$ can be used instead:
+    \(
+    R_{adj}^2=\frac{(n-1)R^2-p}{n-p-1}
+    \)
+\end{enumerate}
+\end{minipage} \\
+
+\hline
+\textbf{\textcolor{red}{Regression Concerns: Variable Selection}} \\
+\textbf{\textcolor{red}{Selection Metrics}}
+\begin{enumerate}
+[noitemsep, topsep=0pt]
+    \item \textbf{Mallow’s } $C_p$, $C_p = \frac{\text{SSR}}{s^2} - (n + 2p)$ where $R^2 = \frac{\text{SSR}}{\text{SST}} \quad \text{and} \quad s^2 = \frac{\text{SSE}}{n - p - 1} = \frac{\boldsymbol{y}^T H \boldsymbol{y}}{n - p - 1}$
+    \item \textbf{Akaike Information Criterion (AIC)}, AIC $=-2\ln{L(\hat{\beta}_p,\hat{\sigma}^2)}+2p$
+    \item \textbf{Bayesian Information Criterion (BIC)}, BIC $=-2\ln{L(\hat{\beta}_p,\hat{\sigma}^2)}+p\ln{p}$
+\end{enumerate}
+\textbf{\textcolor{blue}{Remark}}: Here, $L(\cdot)$ represents the likelihood function. \\
+
+\hline
+\textbf{\textcolor{red}{Regression Concerns: Multicollinearity}}\\
+\begin{minipage}{\linewidth} 
+\begin{enumerate}
+[noitemsep, topsep=0pt]
+    \item Some of the predictors are functions of one or more other predictors.
+    \item This problem, known as \textbf{multicollinearity}, can distort the standard error of estimate and can lead to incorrect conclusions as to which independent variables are statistically significant.
+    \item The \textbf{variance inflation factor (VIF)} can be used to check this. The VIF for the
+    $j^{th}$ predictor is the multiple $R^2$ when the $j^{th}$ predictor is regressed to other predictors:
+    \(
+    VIF_j=\frac{1}{1-R_j^2}
+    \)
+    \textcolor{violet}{Interpretation: Retain if $VIF_j<5,$ while remove if $VIF_j>10.$}
+\end{enumerate}
+\end{minipage} \\
+\hline  
+\textbf{\textcolor{red}{Regression Concerns: Residuals}} \\
+\begin{minipage}{\linewidth} 
+\begin{enumerate}
+[noitemsep, topsep=0pt]
+    \item Residuals should be uncorrelated (that is, no patterns on the plot).
+    \item Normality can be verified using a \textbf{normal Q-Q plot}, and the statistical tests \textbf{Shapiro-Wilk} test and \textbf{Anderson-Darling} test.
+    \newline \textcolor{violet}{In these tests, the null hypothesis is that the data comes from a normal distribution}
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{\textcolor{red}{Motivation}} \\
+\begin{minipage}{\linewidth} 
+\begin{enumerate}
+[noitemsep, topsep=0pt]
+    \item Several treatments or treatment combinations are applied to randomly selected experimental units.
+    \item \textbf{Goal}: Compare treatment means 
+    \newline \textcolor{violet}{We can use analysis-of-variance and linear
+models to compare means!}
+\end{enumerate} \\
+\end{minipage} \\
+\hline
+\textbf{\textcolor{red}{Illustration: }\textcolor{violet}{Case 1: $y_{ij} = \mu+\alpha_i+\varepsilon_{ij}$}}\\
+In matrix form,
+$\begin{bmatrix}
+    y_{11} \\ 
+    y_{12} \\ 
+    y_{13} \\ 
+    y_{21} \\ 
+    y_{22} \\ 
+    y_{23}
+\end{bmatrix} = \begin{bmatrix}
+    1 & 1 & 0 \\
+    1 & 1 & 0 \\
+    1 & 1 & 0 \\
+    1 & 0 & 1 \\
+    1 & 0 & 1 \\
+    1 & 0 & 1 \\
+\end{bmatrix} \begin{bmatrix}
+    \mu \\
+    \alpha_1 \\
+    \alpha_2 
+\end{bmatrix} + \begin{bmatrix}
+    \varepsilon_{11} \\
+    \varepsilon_{12} \\
+    \varepsilon_{13} \\
+    \varepsilon_{21} \\
+    \varepsilon_{22} \\
+    \varepsilon_{23} 
+\end{bmatrix}$
+\quad where $\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}$ \\
+\hline 
+\newpage
+\hline
+\textbf{\textcolor{blue}{Remarks:}}\\
+\begin{minipage}{\linewidth} 
+\begin{enumerate}[noitemsep, topsep=0pt]
+    \item In most ANOVA applications, there are more than two treatments considered.
+    \item We focus on \textbf{balanced models}: each treatment has the same number of observations.
+    \item The data matrix $\mathbf{X}$ is not full-rank. As such, $\mathbf{X}^{\top}\mathbf{X}$ is also not full rank and $(\mathbf{X}^{\top}\mathbf{X})^{-1}$ does not exist.
+    \item $\boldsymbol{\beta}=\begin{bmatrix}
+        \mu, \alpha_1,\alpha_2
+    \end{bmatrix}^\top$ is not unique and \textit{not estimable}. That is, individual parameters $\mu$, $\alpha_1$, $\alpha_2$ cannot be \textit{uniquely} estimated unless they are subject to constraints or side conditions. 
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{\textcolor{red}{One-Way ANOVA}}\\
+The one-way balanced ANOVA model can be expressed as (Case 1)
+$\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}$\\
+where $\mathbf{y}=\begin{bmatrix}
+    \mathbf{y_1} \\
+    \mathbf{y_2} \\
+    \vdots \\
+    \mathbf{y_k}
+\end{bmatrix}$, $\mathbf{X}=\begin{bmatrix}
+    \mathbf{j} & \mathbf{j} & \boldsymbol{0} & \cdots & \boldsymbol{0} \\
+    \mathbf{j} & \boldsymbol{0} & \mathbf{j} & \cdots & \boldsymbol{0} \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    \mathbf{j} & \boldsymbol{0} & \boldsymbol{0} & \cdots & \mathbf{j}
+\end{bmatrix}$, $\boldsymbol{\beta}=\begin{bmatrix}
+    \mu \\
+    \alpha_1 \\
+    \alpha_2 \\
+    \vdots \\
+    \alpha_k
+\end{bmatrix}$, and $\boldsymbol{\varepsilon}=\begin{bmatrix}
+    \boldsymbol{\varepsilon}_1 \\
+    \boldsymbol{\varepsilon}_2 \\
+    \vdots \\
+    \boldsymbol{\varepsilon}_k
+\end{bmatrix}$.\\
+
+\textbf{\textcolor{blue}{Remark:}} Here, $\mathbf{X}$ is $kn\times(k+1)$, $k$ is the number of treatments, $n$ is the number of observations per treatment, $\mathbf{y}_i=\begin{bmatrix}
+    y_{i1},\dots,y_{in}
+\end{bmatrix}^\top$ and $\boldsymbol{\varepsilon}_i=\begin{bmatrix}
+    \varepsilon_{i1},\dots,\varepsilon_{in}
+\end{bmatrix}^\top$, $\mathbf{j}$ and $\boldsymbol{0}$ are $n\times1$, and $\mathbf{y}$ and $\boldsymbol{\varepsilon}$ are $kn\times1$\\
+
+\textcolor{violet}{Note: for \textbf{Case 2:} $y_{ij}=\mu_i+\varepsilon_{ij}$, $\boldsymbol{\beta}=[\mu_1,...,\mu_k]^T$ and $\boldsymbol{X}$ does not have the first column of 1's.} 
+\\
+\hline
+\textbf{\textcolor{red}{Assumptions}}\\
+\begin{minipage}{\linewidth} 
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item $\mathbb{E}(\varepsilon_{ij})=0$ for all $i$, $j$
+    \item $\text{Var}(\varepsilon_{ij})=\sigma^2$ for all $i$, $j$ 
+    \item $\text{Cov}(\varepsilon_{ij},\varepsilon_{rs})=0$ for all $i$, $j$
+    \item $\varepsilon_{ij}\sim\mathcal{N}(0,\sigma^2)$
+    \item \textcolor{blue}{We often use the constraint (side condition) $\sum_{i=1}^k \alpha_i=0$}
+\end{itemize}
+\end{minipage} \\
+\hline
+\textbf{\textcolor{red}{Estimating $\boldsymbol{\beta}$ and $\sigma^2$}}\\
+A generalized inverse of $\mathbf{X}^\top\mathbf{X}$ in our model is given by
+$(\mathbf{X}^\top\mathbf{X})^-=\begin{bmatrix}
+    0 & 0 & \cdots & 0 \\
+    0 & \frac{1}{n} & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & \frac{1}{n}
+\end{bmatrix}$
+Using this, an estimator for $\boldsymbol{\beta}$ is
+$\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top\mathbf{X})^-\mathbf{X}^\top\mathbf{y}=\begin{bmatrix}
+    0 \\
+    \bar{y}_{1\cdot} \\
+    \vdots \\
+    \bar{y}_{k\cdot}
+\end{bmatrix}\text{.}$
+where $\bar{y}_{i\cdot}=\frac{1}{n}\sum_{j=1}^ny_{ij}$.\\
+
+Moreover, an estimator for $\sigma^2$ is
+$s^2=\frac{\text{SSE}}{k(n-1)}\text{,}$
+where $\text{SSE}=\mathbf{y}^\top\mathbf{y}-\hat{\boldsymbol{\beta}}^\top\mathbf{X}^\top\mathbf{y}=\mathbf{y}^\top[\mathbf{I}-\mathbf{X}(\mathbf{X}^\top\mathbf{X})^-\mathbf{X}^\top]\mathbf{y}$.\\
+
+\hline
+\textbf{\textcolor{blue}{Remarks:}}\\
+\begin{minipage}{\linewidth} 
+\begin{enumerate}[noitemsep, topsep=0pt]
+    \item The rank of the idempotent matrix $[\mathbf{I}-\mathbf{X}(\mathbf{X}^\top\mathbf{X})^-\mathbf{X}^\top]$ is $k(n-1)$.
+    \item $s^2$ is an unbiased estimator of $\sigma^2$.
+    \item $\text{SSE}$ can be written as
+\end{enumerate}
+\end{minipage} \\
+$$\text{SSE}=\mathbf{y}^\top\mathbf{y} - \hat{\boldsymbol{\beta}}^\top\mathbf{X}^\top\mathbf{y} = \sum_{i=1}^k\sum_{j=1}^n y_{ij}^2 - \sum_{i=1}^k \bar{y}_{i\cdot}y_{i\cdot} = \sum_{ij}(y_{ij}-\bar{y}_{i\cdot})^2=\sum_{ij}y_{ij}^2-\sum_i\frac{y_{i\cdot}^2}{n}\text{,}$$
+where $y_{i\cdot}=\sum_{j=1}^ny_{ij}$\\
+
+\hline
+\textcolor{red}{\textbf{Motivation}} \\
+\textbf{\textcolor{violet}{Goal}:} \textcolor{violet}{Test $H_0$: $\mu_1=\mu_2=\cdots=\mu_k$ vs $H_1$: at least two means are unequal.} \\
+\hline
+\newpage
+\hline
+\textcolor{red}{\textbf{One-way ANOVA Model: Hypothesis Testing}} \\
+\textbf{\textcolor{violet}{Recall}:} \textcolor{violet}{One-way ANOVA model can be written as a linear model $\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}$.} \\
+Using $\mu_i=\mu+\alpha_i$, the null hypothesis for the test of equality of means can be written as 
+$H_0\text{: }\alpha_1=\alpha_2=\cdots=\alpha_k\text{.}$ Assuming $\mathbf{y}\sim\mathcal{N}_{kn}(\mathbf{X}\boldsymbol{\beta},\sigma^2\mathbf{I})$, a hypothesis test for $H_0$ can be constructed using the $F$-distribution. \\
+
+\hline
+\textbf{\textcolor{red}{Linear Models in ANOVA}}\\
+The general linear model can be expressed as $\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$
+where $\mathbf{y}$ is the vector of observations, $\mathbf{X}$ is the design matrix, $\boldsymbol{\beta}$ is the vector of parameters, and $\boldsymbol{\varepsilon}$ is the error term.\\
+
+\hline
+\textbf{\textcolor{red}{One-way ANOVA Model: General Linear Hypothesis}} \\
+\textbf{\textcolor{red}{Theorem (12.7b)}}\\
+If $\mathbf{y} \sim N_n(\mathbf{X}\boldsymbol{\beta}, \sigma^2\mathbf{I})$, where $\mathbf{X}$ is $N \times p$ of rank $k < p \leq N$, if $\mathbf{C}$ is $m \times p$ of rank $m \leq k$ such that $\mathbf{C}\boldsymbol{\beta}$ is a set of $m$ linearly independent estimable functions, and if
+$\boldsymbol{\hat{\beta}} = (\mathbf{X^TX})^{-1}\mathbf{X}^T\mathbf{y}$, then
+\begin{minipage}{\linewidth} 
+\begin{enumerate}
+    \item $\mathbf{C(X^T X)}^{-1}\mathbf{C}^T$ is nonsingular.
+    \item $\mathbf{C}\boldsymbol{\hat{\beta}} \sim \mathcal{N}_m(\mathbf{C}\boldsymbol{\beta} , \sigma^2\mathbf{C}(\mathbf{X^T X})^{-}\mathbf{C}^T)$.
+    \item $\dfrac{SSH}{\sigma^2}=\dfrac{(\mathbf{C} \boldsymbol{\hat{\beta}})^T [\mathbf{C} (\mathbf{X^T X})^{-} \mathbf{C}^T]^{-1} (\mathbf{C} \boldsymbol{\hat{\beta}})}{\sigma^2} \sim \chi^2(m,\boldsymbol{\lambda})$, where 
+    \[
+    \lambda = \dfrac{(\mathbf{C} \boldsymbol{\hat{\beta}})^T [\mathbf{C} (\mathbf{X^T X})^{-} \mathbf{C}^T]^{-1} (\mathbf{C} \boldsymbol{\hat{\beta}})}{2\sigma^2}.
+    \]
+    \item $\dfrac{{SSE}}{\sigma^2}=\dfrac{\boldsymbol{y}^T[\mathbf{I} - \mathbf{X}(\mathbf{X^T X})^{-} \mathbf{X}^T] \boldsymbol{y}}{\sigma^2} \sim \chi^2(N - k)$.
+    \item SSH and SSE are independent.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{\textcolor{red}{Theorem (12.7c)}}\\
+Let \( \boldsymbol{y} \sim N_N(\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I}) \), where \( \mathbf{X} \) is \( N \times p \) with rank \( k \), where \( k < p \leq N \). Let \( \mathbf{C} \), \( \mathbf{C} \boldsymbol{\beta} \), and \( \boldsymbol{\hat{\beta}} \) be defined as in the previous theorem. If \( H_0 : \mathbf{C} \boldsymbol{\beta} = \boldsymbol{0} \) is true, then
+\[
+F = \frac{SSH/m}{SSE/(N-k)} = \frac{(\mathbf{C} \boldsymbol{\hat{\beta}})^T [\mathbf{C} (\mathbf{X}^T \mathbf{X})^{-} \mathbf{C}^T]^{-1} (\mathbf{C} \boldsymbol{\hat{\beta}})/m}{SSE/(N-k)} \sim F(m, N - k, 0).
+\]\\
+\hline
+\textbf{\textcolor{red}{One-way ANOVA Model: Hypothesis Testing}}\\
+Note that the hypothesis $H_0 : \alpha_1 = \cdots = \alpha_k$ can be written as\\
+$
+H_0 :
+\begin{bmatrix}
+\alpha_1 - \alpha_2 \\
+\alpha_1 - \alpha_3 \\
+\vdots \\
+\alpha_1 - \alpha_k
+\end{bmatrix} =
+\begin{bmatrix}
+0 \\
+0 \\
+\vdots \\
+0
+\end{bmatrix}
+\Rightarrow
+H_0 :
+\begin{bmatrix}
+1 & -1 & 0 & 0 & \cdots & 0 \\
+1 & 0 & -1 & 0 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & 0 & 0 & 0 & \cdots & -1
+\end{bmatrix}
+\begin{bmatrix}
+\mu \\
+\alpha_1 \\
+\vdots \\
+\alpha_k
+\end{bmatrix} =
+\begin{bmatrix}
+0 \\
+0 \\
+\vdots \\
+0
+\end{bmatrix}
+\Rightarrow
+H_0 : \mathbf{C}\boldsymbol{\beta} = \mathbf{0}
+$
+\\
+\vspace{-0.1 cm}
+That is, $H_0 : \mathbf{C}\boldsymbol{\beta} = \mathbf{0}$, where
+$
+\mathbf{C} =
+\begin{bmatrix}
+0 & 1 & -1 & 0 & 0 & \cdots & 0 \\
+0 & 1 & 0 & -1 & 0 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 1 & 0 & 0 & 0 & \cdots & -1
+\end{bmatrix}
+$
+is $(k - 1) \times (k + 1)$,
+and $\boldsymbol{\beta} = [\mu, \alpha_1, \ldots, \alpha_k]^T$ is $(k + 1) \times 1$. \textcolor{violet}{For \textbf{Case 2:} $y_{ij}=\mu_i+\varepsilon_{ij}$, \textbf{C} does not have the first column of 0's.}
+\\Since $y \sim N_n(\mathbf{X}\boldsymbol{\beta}, \sigma^2\mathbf{I})$, by previous theorem, we can use the test statistic $F = \frac{(\mathbf{C} \boldsymbol{\hat{\beta}})^T [\mathbf{C} (\mathbf{X}^T \mathbf{X})^{-} \mathbf{C}^T]^{-1} (\mathbf{C} \boldsymbol{\hat{\beta}} )/(k-1)}{\text{SSE}/k(n-1)} \sim F(k - 1, k(n - 1))
+$
+to test the hypothesis $H_0 : \alpha_1 = \cdots = \alpha_k$.\\
+\hline
+\newpage
+\hline
+\textbf{\textcolor{red}{One-Way ANOVA Table}}\\
+\vspace{-0.7cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.8} % Adjust row height for readability
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{Source of Variation} & $df$ & \textbf{SS} & \textbf{MS} = $\frac{SS}{df}$ & \textbf{$F$-statistic} \\
+    \hline
+    Treatments & $k-1$ & $SSH=\frac{1}{n} \sum_i{y_{i.}^{2}} - \frac{y_{..}^2}{kn}$ & $\frac{SSH}{(k-1)}$ & $F = \frac{\frac{SSH}{(k-1)}}{\frac{SSE}{k(n-1)}}$ \\
+    \hline
+    Error & $k(n-1)$ & $SSE=\sum_{ij}{y_{ij}^2} - \frac{1}{n} \sum_i{y_i.^2}$ & $\frac{SSE}{k(n-1)}$ & \\
+    \hline
+    Total & $kn - 1$ & $SST=\sum_{ij}{y_{ij}^2} - \frac{y_{..}^2}{kn}$ & & \\
+    \hline
+\end{tabular}
+\end{center}\\
+\hline
+\textbf{\textcolor{red}{Testing Contrasts}}\\
+A linear contrast is any linear combination of the individual group means such that the linear coefficients sum to 0:
+$
+L = \sum_{i=1}^{k} c_i \alpha_i, \quad \text{where} \quad \sum_{i=1}^{k} c_i = 0.$\\
+\textbf{\textcolor{blue}{Remark:}}
+\begin{enumerate}[noitemsep, topsep=0pt]
+    \item For the one-way model, the contrast $\sum_i{c_i\alpha_i}$ is equivalent to $\sum_i{c_i\mu_i}$.
+    \item The hypothesis of interest is $H_0 : \sum_i c_i \alpha_i$ or $H_0 : \sum_i c_i \mu_i = 0$, which represents a comparison of means if $\sum_i c_i=0$.
+\end{enumerate}
+Note that the null hypothesis can be written as \( H_0: \mathbf{c}^T \boldsymbol{\beta} \), where \( \mathbf{c} = [0, c_1, \dots, c_k]^T \) and \( \boldsymbol{\beta} = [\mu, \alpha_1, \dots, \alpha_k]^T \).
+Assuming \( \mathbf{y} \sim \mathcal{N}_{kn}(\mathbf{X} \boldsymbol{\beta}, \sigma^2 \mathbf{I}) \), \( H_0 \) can be tested using the previous theorem with \( m=1 \) and test statistic $F = \frac{(\mathbf{c}^T \boldsymbol{\hat{\beta}})^T [\mathbf{c}^T (\mathbf{X}^T \mathbf{X})^{-} \mathbf{c}]^{-1} (\mathbf{c}^T \boldsymbol{\hat{\beta}})}{\text{SSE} / k(n-1)} = \frac{(\mathbf{c}^T \boldsymbol{\hat{\beta}})^2}{s^2 [\mathbf{c}^T (\mathbf{X}^T \mathbf{X})^{-} \mathbf{c}]} \sim F(1, k(n-1)).
+$\\
+\hline
+\end{longtable}
+
+\end{document}
