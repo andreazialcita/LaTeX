@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath, amssymb, amsfonts, setspace}
+\setstretch{1.6}
+\usepackage[a4paper,margin=0.75in,footskip=0.25in]{geometry}
+\expandafter\def\expandafter\normalsize\expandafter{%
+    \normalsize%
+    \setlength\abovedisplayskip{-9pt}%
+    \setlength\belowdisplayskip{6pt}%
+    \setlength\abovedisplayshortskip{-9pt}%
+    \setlength\belowdisplayshortskip{6pt}%
+}
+\pagenumbering{gobble}
+
+
+\begin{document}
+
+\noindent another (integrable) function $q$ on $D$ with $q(x) \geq p(x)$ such that we have a way to sample from the density
+
+\begin{align*}
+\hat{q}(x) \; \dot{=} \; \frac{q(x)}{\text{I}[q]}=\frac{q(x)}{\int_Dq(x)d\mu}
+\end{align*}
+
+\noindent For simplicity, further assume that D has finite measure. That is, $\int_Dd\mu<\infty$ where $\mu$ is the Lebesque measure. Randomly sample $x_n'$ according to $\hat{q}$ and $y_n$ according to the uniform distribution from 0 to 1. For every $x_n'$ in our sample, we accept it as a realization of $p$ if 
+
+\begin{align*}
+0<y_n<\frac{p(x_n')}{q(x_n')}
+\end{align*}
+
+\noindent and reject it otherwise. The set of accepted points obtained from this process is a sample with density $p$ according to the rejection method. 
+
+\quad Let us show why the rejection method works. This proof is much more detailed than the one found in [Caf98]. Without loss of generality, we assume $q(x)>0$ on $D$. Since $p(x) \leq q(x)$ for all $x$ in the domain,
+
+\begin{align*}
+p(x) = \frac{p(x)}{q(x)}
+\hat{q}(x)\:\text{I}[q]=\int_0^1\chi \left (\left \{y \mid y<\frac{p(x)}{q(x)} \right\} \right) \: dy \:\hat{q}(x)I[q]
+\end{align*}
+
+\noindent where $\chi(A)$ is the characteristic function on a (measurable) set A given by 
+
+\begin{align*}
+\chi(A)(y) =
+    \begin{cases}
+        \:1, & y \in A \\
+        \:0, & y \notin A
+    \end{cases}
+\end{align*}
+
+\noindent For simplicity of notation, let $A(x)=\left \{y \! \mid \!\! y<\frac{p(x)}{q(x)} \right \}$. This is a measurable set-valued function, since $\frac{p}{q}$ is measurable and thus $A(x)=\frac{p}{q}^{-1}(-\infty,x)$ is a measurable set. The previous equation becomes 
+
+\begin{align*}
+p(x)=\int_0^1\chi(A(x))\:dy\:\hat{q}(x)\text{I}[q]
+\end{align*}
+
+\noindent For $f$ an integrable function on $D$,
+
+\begin{flalign} 
+\mathbb{E}(f(X))&=\int_Df(x)p(x)dx \nonumber \\
+    &=\int_D\int_0^1f(x)\chi(A(x))(y)\hat{q}(x)\:dy\:\text{I}[q]\:dx \tag{4.14}\\ 
+    &=\int_0^1 \int_Df(x)\chi(A(x))(y)\hat{q}(x)\:dx\:\text{I}[q]\:dy \nonumber \\
+    &=\int_0^1 \mathbb{E}_{\hat{q}}(f\cdot\chi(A(x)))\: dy \:\text{I}[q] \nonumber
+\end{flalign}
+
+
+
+
+
+
+\end{document}
