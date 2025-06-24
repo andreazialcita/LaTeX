@@ -1,6 +1,6 @@
 # LaTeX Showcase
 
-This repository contains some LaTeX documents I have created. These documents were made particularly to format outputs for my math classes.
+This repository contains some LaTeX documents I have created. I made these to format important documents for my math classes.
 
 ## Documents
 
