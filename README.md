@@ -9,7 +9,7 @@ This repository contains LaTeX documents demonstrating my technical writing and 
   - 💻 [View the LaTeX Source](./report.tex)
 - Output for my introductory thesis class
   - 📄 [View the PDF](https://github.com/andreazialcita/LaTeX/blob/main/_MATH_192__LaTeX_Problem_Set.pdf)
-  - 💻 [View the LaTeX Source](./report.tex)
+  - 💻 [View the LaTeX Source](https://github.com/andreazialcita/LaTeX/blob/main/main.tex)
 - Cheat Sheet
   - 📄 [View the PDF](./report.pdf)
   - 💻 [View the LaTeX Source](./report.tex)
